@@ -1,28 +1,21 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import "./App.scss";
 
 //Views
-import Dashboard from "../views/dashboard";
-import Signin from "../views/signin";
-import Signup from "../views/Signup";
+import Dashboard from "./views/dashboard";
+import Signin from "./views/Signin";
+import Signup from "./views/Signup";
 
 //Components
-import Sidebar from "../components/Sidebar";
-import WODs from "../components/WODs";
-import PRs from "../components/PRs";
-import Moodboard from "../components/Moodboard";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   return (
     <Router>
-      <Sidebar />
       <Routes>
-        <Route path="/" element={<Dashboard />}>
-          <Route path="/WODs" />
-          <Route path="/PRs" />
-          <Route path="/moodboard" />
-        </Route>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
