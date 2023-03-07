@@ -2,10 +2,59 @@ import "primeicons/primeicons.css";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
+import { useRef } from "react";
+import supabase from "../services/supabase";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const toast = useRef(null);
+  const navigate = useNavigate();
+
+  const infoSuccess = (message) => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: message,
+      life: 3000,
+    });
+  };
+
+  const infoError = (message) => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: message,
+      life: 3000,
+    });
+  };
+
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    const formElements = event.target.elements;
+
+    if (formElements[1].length < 6) {
+      infoError("Password is too short");
+      return;
+    }
+    let { data, error } = await supabase.auth.signUp({
+      email: formElements[0].value,
+      password: formElements[1].value,
+    });
+
+    if (error) {
+      infoError(error.message);
+    } else {
+      infoSuccess("Sign up successful");
+    }
+  };
+
+  const handleAlreadyHaveAnAccount = () => {
+    navigate("/signin");
+  };
   return (
     <div className="signup--container">
+      <Toast ref={toast} />
       <div className="signup--container__text">
         <h1 className="app--title">
           PERSONAL RECORD TRACKING
@@ -43,7 +92,7 @@ const Signup = () => {
             />
             <h1 className="header--signup">Signup</h1>
           </div>
-          <form className="signup--form">
+          <form className="signup--form" onSubmit={handleSignUp}>
             <div className="input--style">
               <span className="pi pi-envelope" />
               <input
@@ -63,6 +112,7 @@ const Signup = () => {
               />
             </div>
             <button
+              onClick={handleAlreadyHaveAnAccount}
               aria-label="Already have an account?"
               className="account--question"
             >
@@ -70,7 +120,12 @@ const Signup = () => {
                 Already have an account?
               </span>
             </button>
-            <button label="Signup" severity="help" className="signup--button">
+            <button
+              type="submit"
+              label="Signup"
+              severity="help"
+              className="signup--button"
+            >
               Signup
             </button>
           </form>
