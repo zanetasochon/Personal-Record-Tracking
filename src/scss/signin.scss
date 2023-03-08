@@ -22,7 +22,7 @@
     }
     .header--title {
       font-size: 36px;
-      margin-top: 50px;
+      margin-top: 25px;
     }
 
     .quote {
@@ -31,7 +31,7 @@
     }
 
     .footer--slogan {
-      font-size: 25px;
+      font-size: 15px;
     }
   }
 
@@ -128,5 +128,8 @@
 
   .input--style {
     display: flex;
+  }
+  .crossfitGirl--photo {
+    width: 400px;
   }
 }
