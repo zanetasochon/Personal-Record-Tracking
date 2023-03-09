@@ -1,0 +1,55 @@
+@import "./variables";
+
+.prs--main__container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .selection--container {
+    border: 2px solid $primary--color;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+    color: #fff;
+    background-color: $secondary--color;
+    font-family: $main-font;
+
+    .prs--header {
+      font-family: $main-font;
+      font-size: 36px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .choose--exercise__carusel {
+      padding-bottom: 20px;
+    }
+
+    .find--exercise {
+      margin-bottom: 20px;
+    }
+  }
+
+  .exercise--container {
+    border: 2px solid $primary--color;
+    border-radius: 25px;
+    box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+    color: #fff;
+    background-color: $secondary--color;
+    font-family: $main-font;
+    padding: 20px;
+
+    .carusel--container__exercise {
+      border: 1px solid rgba(66, 68, 90, 1);
+      border-radius: 25px;
+      padding: 10px;
+      .exercise--wrapper {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(66, 68, 90, 1);
+      }
+    }
+  }
+}

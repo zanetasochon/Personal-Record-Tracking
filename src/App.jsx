@@ -1,4 +1,5 @@
 import React from "react";
+import { Calendar } from "react-calendar";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.scss";
@@ -7,14 +8,13 @@ import "./App.scss";
 import Dashboard from "./views/dashboard";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
-
-//Components
-import Sidebar from "./components/Sidebar";
+import calendar from "./views/calendar";
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />

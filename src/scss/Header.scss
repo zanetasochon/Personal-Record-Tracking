@@ -1,4 +1,44 @@
+@import "./variables";
+
 .container--header {
   width: 100vw;
   height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 20px;
+
+  .header--logo__container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #536878;
+    font-family: $main-font;
+    font-size: 26px;
+
+    .header--logo {
+      margin: 0;
+    }
+
+    .fa-dumbbell {
+      font-size: 40px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  .header--active__icons {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    font-size: 26px;
+    color: #fff;
+
+    .fa-calendar-days,
+    .fa-house {
+      border: 3px solid #536878;
+      padding: 20px;
+      border-radius: 50%;
+      box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+    }
+  }
 }
