@@ -1,9 +1,45 @@
+import supabase from "../services/supabase";
+import { useEffect, useState } from "react";
+
 const PRs = () => {
+  const [exercise, setExercise] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+
+  useEffect(() => {
+    const fetchExercise = async () => {
+      const { data, error } = await supabase.from("exercise").select();
+
+      if (error) {
+        setFetchError("Could not fetch the exercise");
+        setExercise(null);
+        console.log("error");
+      }
+      if (data) {
+        setExercise(data);
+        setFetchError(null);
+        console.log(data);
+      }
+    };
+
+    fetchExercise();
+  }, []);
+
   return (
     <div className="prs--main__container">
       <div className="selection--container">
         <h1 className="prs--header">PR`s</h1>
-        <span className="choose--exercise__carusel">squat snatch</span>
+        <div className="choose--exercise__carusel">
+          {fetchError && <p>{fetchError}</p>}
+          {exercise && (
+            <div className="exercises">
+              {exercise.map((exercise) => (
+                <p key={exercise.id} exercise={exercise}>
+                  {exercise.exercise}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
         <input className="find--exercise" type="text" />
       </div>
       <div className="exercise--container">

@@ -1,7 +1,4 @@
 import "primeicons/primeicons.css";
-import { InputText } from "primereact/inputtext";
-import { Password } from "primereact/password";
-import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 import supabase from "../services/supabase";

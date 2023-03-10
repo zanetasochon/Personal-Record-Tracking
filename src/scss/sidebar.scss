@@ -7,7 +7,6 @@
   background-color: $secondary--color;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
 
   .sidebar--header {
     color: #fff;
@@ -69,5 +68,52 @@
         }
       }
     }
+  }
+}
+
+.p-sidebar-left .p-sidebar {
+  width: 200px;
+  height: 100%;
+  background-color: #536878;
+  border-radius: 25px;
+  box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+  width: 13rem;
+}
+
+.p-sidebar.p-component.p-ripple-disabled.p-sidebar-enter-done {
+  width: 13rem;
+}
+
+button.p-button.p-component {
+  all: unset;
+}
+
+.header--active__icons {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  font-size: 26px;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 250px;
+
+  .fa-calendar-days {
+    border: 3px solid #536878;
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+  }
+  .fa-house {
+    border: 3px solid #536878;
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
+
+    left: 1150px;
+    top: 20px;
+    padding: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 26px;
   }
 }

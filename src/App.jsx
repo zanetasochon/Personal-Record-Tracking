@@ -1,6 +1,5 @@
 import React from "react";
 import { Calendar } from "react-calendar";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.scss";
 

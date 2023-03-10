@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import SidebarComponent from "../components/Sidebar";
 import Header from "../components/Header";
 import PRs from "../components/PRs";
 import WODs from "../components/WODs";
@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Outlet />
       <div className="components--wrapper">
         <Header />
-        <Sidebar />
+        <SidebarComponent />
         <div className="main--functionality__container">
           <WODs />
           <PRs />
