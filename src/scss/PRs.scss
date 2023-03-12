@@ -27,10 +27,7 @@
 
     .choose--exercise__carusel,
     .exercise {
-      padding-bottom: 20px;
-    }
-
-    .find--exercise {
+      margin-top: 20px;
       margin-bottom: 20px;
     }
   }
@@ -45,9 +42,24 @@
     padding: 20px;
     width: 300px;
     height: 500px;
+    .icon--add--pr__form {
+      margin-left: 110px;
+
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    .PRs--icons {
+      display: flex;
+      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 10px;
+    }
 
     .exercise--container__header {
       color: $primary--color;
+      margin-bottom: 5px;
     }
 
     .carusel--container__exercise {
@@ -60,7 +72,37 @@
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid rgba(66, 68, 90, 1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(66, 68, 90, 0.5);
+        margin-top: 10px;
+
+        .add--pr__button {
+          background-color: $primary--color;
+          border: none;
+          border-radius: 20px;
+          font-family: $main-font;
+          font-size: 15px;
+          padding: 5px 5px;
+          color: #fff;
+          margin-bottom: 15px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
       }
     }
   }
+}
+
+button.p-button.p-component.p-autocomplete-dropdown.p-button-icon-only {
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
 }
