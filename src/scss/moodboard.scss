@@ -34,11 +34,23 @@
       display: flex;
       gap: 60px;
       padding-top: 10px;
-      font-size: 25px;
+      font-size: 30px;
+      justify-content: center;
+      align-items: center;
     }
   }
 
-  .wod--container {
+  .moodboard--icons {
+    display: flex;
+    gap: 60px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .moodboard--container {
     border: 2px solid $primary--color;
     border-radius: 25px;
     box-shadow: 0px 1px 27px -5px rgba(66, 68, 90, 1);
@@ -65,17 +77,20 @@
       font-size: 15px;
     }
 
-    .wod--card__container {
+    .moodboard--form {
       display: flex;
       flex-direction: column;
-      gap: 30px;
 
-      .work--of--the__day {
-        font-size: 26px;
-      }
-
-      .wod--description {
-        font-size: 10px;
+      .add--entry__button {
+        background-color: $primary--color;
+        border: none;
+        border-radius: 20px;
+        font-family: $main-font;
+        font-size: 15px;
+        padding: 5px 5px;
+        color: #fff;
+        margin-top: 10px;
+        cursor: pointer;
       }
     }
   }

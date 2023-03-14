@@ -18,10 +18,12 @@ const PRs = () => {
   const [showForm, setShowForm] = useState(false);
   const [newExercise, setNewExercise] = useState({});
 
+  //tablica z  ćwiczeniami w allExercise ( ? <-zabezpieczenie dostępu przed błędem TypeError, gdy tablica jest null lub undefined)
   const exercisesNames = allExercises?.map(
     (singleExercise) => singleExercise.exercise_name
   );
 
+  //Wyszukiwanie w autoComplete
   const search = (event) => {
     setSearchExercisesNames(
       event.query
@@ -31,6 +33,27 @@ const PRs = () => {
         : exercisesNames
     );
   };
+
+  //pobranie ćwiczeń z supabase do autoComplete
+
+  useEffect(() => {
+    const fetchExercise = async () => {
+      const { data, error } = await supabase.from("exercise").select();
+
+      if (error) {
+        setFetchError("Could not fetch the exercise");
+        setAllExercises(null);
+      }
+      if (data) {
+        setAllExercises(data);
+        setFetchError(null);
+      }
+    };
+
+    fetchExercise();
+  }, []);
+
+  //Dodanie z autoComplete do listy
 
   const addExerciseToList = async (selectedExercise) => {
     const { data, error } = await supabase
@@ -45,80 +68,43 @@ const PRs = () => {
     }
   };
 
-  const addNewExercise = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("exercise")
-        .insert([newExercise]);
-      if (error) {
-        console.log("Could not insert new exercise:", error.message);
-        return;
-      }
-      if (data) {
-        setExercisesList([...exercisesList, data[0]]);
-      }
-      setNewExercise({
-        exercise_name: "",
-        personal_record: "",
-      });
-      setShowForm(false);
-    } catch (error) {
-      console.log("Could not insert new exercise:", error.message);
-    }
-  };
-
+  //formularz, aktualizacja stanu newExercise na nową wartość
   const handleNewExerciseChange = (event) => {
     setNewExercise({
       ...newExercise,
       [event.target.name]: event.target.value,
     });
   };
+
+  //obsługa formularza pobranie z supabase danych
   const handleSubmitNewExercise = async (event) => {
     event.preventDefault();
-    try {
-      const { data, error } = await supabase
-        .from("exercise")
-        .insert([{ ...newExercise }]);
-      if (error) {
-        console.log("Could not insert new exercise:", error.message);
-        return;
-      }
-      if (data) {
-        setExercisesList([...exercisesList, data[0]]);
-      }
+    const { data, error } = await supabase
+      .from("exercise")
+      .insert([{ ...newExercise }]);
+    if (!error) {
       setNewExercise({
         exercise_name: "",
         personal_record: "",
       });
       setShowForm(false);
-    } catch (error) {
+
+      if (data) {
+        setExercisesList([...exercisesList, data[0]]);
+      }
+    }
+
+    if (error) {
       console.log("Could not insert new exercise:", error.message);
     }
   };
-  console.log("allExercises", allExercises);
-  useEffect(() => {
-    const fetchExercise = async () => {
-      const { data, error } = await supabase.from("exercise").select();
 
-      if (error) {
-        setFetchError("Could not fetch the exercise");
-        setAllExercises(null);
-        console.log("error");
-      }
-      if (data) {
-        setAllExercises(data);
-        setFetchError(null);
-        console.log("data", data);
-      }
-    };
-
-    fetchExercise();
-  }, []);
-
+  //obsługa przycisku TRASH - usunięcie pozycji z listy -
   const removeExerciseFromList = (id) => {
     const updatedList = exercisesList.filter((exercise) => exercise.id !== id);
     setExercisesList(updatedList);
   };
+
   return (
     <div className="prs--main__container">
       <div className="selection--container">
@@ -179,12 +165,9 @@ const PRs = () => {
                 <div className="PRs--icons">
                   <FontAwesomeIcon
                     style={{ cursor: "pointer" }}
-                    icon={faPenToSquare}
-                  />
-                  <FontAwesomeIcon
-                    style={{ cursor: "pointer" }}
                     icon={faTrashCan}
                     onClick={() => removeExerciseFromList(exercise.id)}
+                    id={exercise.id}
                   />
                 </div>
                 <p style={{ paddingTop: "10px" }}>{exercise.exercise_name}</p>
